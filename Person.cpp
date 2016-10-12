@@ -1,64 +1,30 @@
-#include <iostream>  
-#include <cstdlib>
-#include <string>  
+#include "Person.h"
 
-//TODO : Faire les vérifications lors des setters et des données rentrées
-
-class Person {
-	std::string firstName;
-	std::string lastName;
-	std::string nickName;
-	std::string phoneNumber;
-	Date birthDate;
-	Address address;
-	Person() {}
-
-public:
-	Person(std::string firstName, std::string lastName, Address address);
-	~Person();
-
-	std::string getFirstName();
-	std::string getLastName();
-	std::string getNickName();
-	std::string getPhoneNumber();
-	Date getBirthDate();
-	Address getAddress();
-
-	void setFirstName(std::string firstName);
-	void setLastName(std::string lastName);
-	void setNickName(std::string nickName);
-	void setPhoneNumber(std::string phoneNumber);
-	void setBirthDate(Date birthDate);
-	void setAddress(Address address);
-
-	void printPerson();
-};
-
-Person(std::string firstName, std::string lastName, Address address) { 
+Person::Person(std::string firstName, std::string lastName, Address address) {
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->address = address;
 	// TODO : Voir si on peut / il faut mettre à NULL le reste
 }
-~Person() {}
+Person::~Person() {}
 
-std::string getFirstName() { return this->firstName; }
-std::string getLastName() { return this->lastName; }
-std::string getNickName() { return this->nickName; }
-std::string getPhoneNumber() { return this->phoneNumber; }
-Date getBirthDate() { return this->birthDate; }
-Address getAddress() { return this->address; }
+std::string Person::getFirstName() { return this->firstName; }
+std::string Person::getLastName() { return this->lastName; }
+std::string Person::getNickName() { return this->nickName; }
+std::string Person::getPhoneNumber() { return this->phoneNumber; }
+Date Person::getBirthDate() { return this->birthDate; }
+Address Person::getAddress() { return this->address; }
 
-void setFirstName(std::string firstName) { this->firstName = firstName; }
-void setLastName(std::string lastName) { this->lastName = lastName; }
-void setNickName(std::string nickName) { this->nickName = nickName; }
-void setPhoneNumber(std::string phoneNumber) { this->phoneNumber = phoneNumber; }
-void setBirthDate(Date birthDate) { this->birthDate = birthDate; }
-void setAddress(Address address) { this->address = address; }
+void Person::setFirstName(std::string firstName) { this->firstName = firstName; }
+void Person::setLastName(std::string lastName) { this->lastName = lastName; }
+void Person::setNickName(std::string nickName) { this->nickName = nickName; }
+void Person::setPhoneNumber(std::string phoneNumber) { this->phoneNumber = phoneNumber; }
+void Person::setBirthDate(Date birthDate) { this->birthDate = birthDate; }
+void Person::setAddress(Address address) { this->address = address; }
 
-void printPerson() {
+void Person::printPerson() {
 	std::cout << this->firstName << " \"" << this->nickName << "\" " << this->lastName << std::endl;
 	this->birthDate.printDate();
 	std::cout << this->phoneNumber << std::endl;
-	this->adress.printAddress();
+	this->address.printAddress();
 }

@@ -1,44 +1,24 @@
-#include <iostream>  
-#include <cstdlib>
-#include <string>  
+#include "Address.h"
 
-class Address {
-	std::string city;
-	std::string country;
-	int streetNumber;
-	std::string streetName;
+Address::Address(std::string city, std::string country, int streetNumber, std::string streetName) {
+    this->city = city;
+    this->country = country;
+    this->streetNumber = streetNumber;
+    this->streetName = streetName;
+}
+Address::~Address(){
+}
+std::string Address::getCity(){ return this->city; }
+std::string Address::getCountry(){ return this->country; }
+int Address::getStreetNumber(){ return this->streetNumber; }
+std::string Address::getStreetName(){ return this->streetName; }
 
-public:
-	Address();
-	Address(std::string city, std::string country, int streetNumber, std::string streetName);
-	~Address();
+void Address::setCity(std::string city){ this->city = city; }
+void Address::setCountry(std::string country){ this->country = country; }
+void Address::setStreetNumber(int streetNumber){ this->streetNumber = streetNumber; }
+void Address::setStreetName(std::string streetName){ this->streetName = streetName; }
 
-	std::string getCity();
-	std::string getCountry();
-	int getStreetNumber();
-	std::string getStreetName();
-
-	void setCity(std::string city);
-	void setCountry(std::string country);
-	void setStreetNumber(int streetNumber);
-	void setStreetName(std::string streetName);
-
-	void printAddress();
-};
-
-Address(std::string city, std::string country, int streetNumber, std::string streetName);
-~Address();
-std::string getCity();
-std::string getCountry();
-int getStreetNumber();
-std::string getStreetName();
-
-void setCity(std::string city);
-void setCountry(std::string country);
-void setStreetNumber(int streetNumber);
-void setStreetName(std::string streetName);
-
-void printAddress() {
+void Address::printAddress() {
 	std::cout << this->streetNumber << " " << this->streetName << std::endl;
 	std::cout << this->city << ", " << this->country << std::endl;
 }

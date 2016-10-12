@@ -1,55 +1,32 @@
-#include <iostream>  
-#include <cstdlib>
-#include <string>  
+#include "Date.h"
 
-class Date {
-	unsigned int year;
-	unsigned int month;
-	unsigned int day;
-	
-	Date() {}
-
-public :
-	Date(unsigned int year, unsigned int month = 01, unsigned int day = 01);
-	Date(unsigned int year, unsigned int month, unsigned int day);
-	~Date();
-
-	unsigned int getYear();
-	unsigned int getMonth();
-	unsigned int getDay();
-
-	void setYear(unsigned int year);
-	void setMonth(unsigned int month);
-	void setDay(unsigned int day);
-
-	void printDate();
-};
-
-Date(unsigned int year, unsigned int month = 01, unsigned int day = 01) {
+Date::Date(unsigned int year) {
 	this->year = year;
+	this->day = 1;
+	this->month = 1;
 }
-Date(unsigned int year, unsigned int month, unsigned int day) {
+Date::Date(unsigned int year, unsigned int month, unsigned int day) {
 	this->year = year;
 	this->month = month;
 	this->day = day;
 }
-~Date() {}
+Date::~Date() {}
 
-unsigned int getYear() {  return this->year; }
-unsigned int getMonth() { return this->month; }
-unsigned int getDay() { return this->day; }
+unsigned int Date::getYear() {  return this->year; }
+unsigned int Date::getMonth() { return this->month; }
+unsigned int Date::getDay() { return this->day; }
 
-void setYear(unsigned int year) { this->year = year; }
-void setMonth(unsigned int month) { 
+void Date::setYear(unsigned int year) { this->year = year; }
+void Date::setMonth(unsigned int month) {
 	if (month > 12 && month != 0)
-		this->month = month; 
+		this->month = month;
 }
-void setDay(unsigned int day) { 
+void Date::setDay(unsigned int day) {
 	if (day > 31 && day != 0)
-		this->day = day; 
+		this->day = day;
 }
 
-void printDate() {
+void Date::printDate() {
 	// Day / Month / Year
 	std::cout << this->day << "/" << this->month << "/" << this->year << std::endl;
 }
