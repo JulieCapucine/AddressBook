@@ -1,16 +1,16 @@
 #include "Date.h"
 
 Date::Date(unsigned int year) {
-	this->year = year;
+    Date(year, 1, 1);
+	/*this->year = year;
 	this->day = 1;
-	this->month = 1;
+	this->month = 1;*/
 }
 Date::Date(unsigned int year, unsigned int month, unsigned int day) {
 	this->year = year;
 	this->month = month;
 	this->day = day;
 }
-
 Date::~Date() {}
 
 unsigned int Date::getYear() {  return this->year; }

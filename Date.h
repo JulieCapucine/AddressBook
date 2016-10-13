@@ -1,3 +1,6 @@
+#ifndef DATE_H
+#define DATE_H
+
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -8,12 +11,10 @@ class Date {
 	unsigned int month;
 	unsigned int day;
 
-   
-
 public :
+    Date(){}
 	Date(unsigned int year);
 	Date(unsigned int year, unsigned int month, unsigned int day);
-	 Date();
 	~Date();
 
 	unsigned int getYear();
@@ -26,3 +27,5 @@ public :
 
 	void printDate();
 };
+
+#endif

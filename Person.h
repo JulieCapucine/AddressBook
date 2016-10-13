@@ -1,3 +1,6 @@
+#ifndef PERSON_H
+#define PERSON_H
+
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -13,10 +16,9 @@ class Person {
 	std::string phoneNumber;
 	Date birthDate;
 	Address address;
-	
+	Person() {}
 
 public:
-	Person();
 	Person(std::string firstName, std::string lastName, Address address);
 	~Person();
 
@@ -35,4 +37,7 @@ public:
 	void setAddress(Address address);
 
 	void printPerson();
+	unsigned int isNamed(std::string keyword);
 };
+
+#endif
