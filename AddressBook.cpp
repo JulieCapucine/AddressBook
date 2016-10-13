@@ -3,10 +3,10 @@
 #include "Person.h"
 #include "Date.h"
 
-// Le code est horrible, c'est juste des idÈes...
+// Le code est horrible, c'est juste des id√©es...
 // Ajouter dans un std::vector : myvector.push_back(madonnee)
-// Recuperer les donnÈes d'un std::vector (toutes!) : myvector.data()
-// RÈcuperer la donnÈe 1 d'un std::vector : myvector[indice]
+// Recuperer les donn√©es d'un std::vector (toutes!) : myvector.data()
+// R√©cuperer la donn√©e 1 d'un std::vector : myvector[indice]
 // Recuperer taille : myvector.size()
 
 void AddressBook::printAll(){
@@ -16,15 +16,15 @@ void AddressBook::printAll(){
 }
 
 std::map<unsigned int, Person> AddressBook::search(std::string keyword){
-    // Voir si on peut pas faire une sorte de matrice, qui prend la Person mais aussi son indice dans l'AddressBook
     std::map<unsigned int, Person> result;
     for (unsigned int i = 0; i < this->entries.size(); i++) {
       if (this->entries[i].isNamed(keyword)) // Si l'entree actuelle valide les criteres requis
-        // Pour le moment, on verifie seulement si le firstname est egal au keyword entrÈ
+        // Pour le moment, on verifie seulement si le firstname est egal au keyword entr√©
         result.insert(std::pair<unsigned int, Person>(i, this->entries[i]));
 
     }
     return result;
+   // Retour : une liste de cl√©-valeurs, qui associe indice de la personne et personne
 }
 void AddressBook::addContact(){
     // Ca fonctionne mais attention, cin aime pas les phrases avec espace
