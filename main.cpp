@@ -29,5 +29,8 @@ int main()
         std::cout << "Position AddressBook : " << it->first << endl;
         (it->second).printPerson();
     }
+
+    addresses.removeContact();
+    addresses.printAll();
     return 0;
 }

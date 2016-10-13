@@ -2,6 +2,9 @@
 #include "Address.h"
 #include "Person.h"
 #include "Date.h"
+#include <iostream>
+#include <string>
+#include <map>
 
 // Le code est horrible, c'est juste des idées...
 // Ajouter dans un std::vector : myvector.push_back(madonnee)
@@ -26,6 +29,7 @@ std::map<unsigned int, Person> AddressBook::search(std::string keyword){
     return result;
    // Retour : une liste de clé-valeurs, qui associe indice de la personne et personne
 }
+
 void AddressBook::addContact(){
     // Ca fonctionne mais attention, cin aime pas les phrases avec espace
     // Il considere que c'est une validation du mot precedent, voir comment ameliorer ca
@@ -59,8 +63,59 @@ void AddressBook::addContact(){
 
 }
 void AddressBook::removeContact(){
-    //if isEmpty, ne rien faire
-    // Demander qui on veut supprimer
+
+    if (this->isEmpty()){
+        std::cout << "There is no contact in your address book." << std::endl;
+    } else {
+
+        std::string firstName, lastName;
+        std::cout << "First name of the contact you want to delete ?" << std::endl;
+        std::cin >> firstName;
+        // std::cout << "Last name of the contact you want to delete  ? ";
+        // std::cin >> lastName;
+
+        std::map<unsigned int, Person> result = this->search(firstName);
+       
+         if (result.size() == 0) {
+            std::cout << "There is no one with that name in your address book" << std::endl;
+        } else {
+            std::map<unsigned int, Person>::iterator it;
+             std::string indicePerson;
+             int indicePersonInt;
+            if (result.size() == 1){
+                 std::cout << "You are going to delete this person." << std::endl;
+                 
+                for (it=result.begin(); it!=result.end(); ++it) {
+                    std::cout << "Person n° : " << it->first << std::endl;
+                    (it->second).printPerson();
+                }
+                indicePersonInt = it->first + 1;
+            } else {
+                 std::cout << "There are several persons with that name in your address book : " << std::endl;
+                for (it=result.begin(); it!=result.end(); ++it) {
+                    std::cout << "Person n° : " << it->first << std::endl;
+                    (it->second).printPerson();
+                }
+                std::cout << "Please enter the number of the person you want to delete" << std::endl;
+               
+                std::cin >> indicePerson;
+                indicePersonInt = atoi(indicePerson.c_str());
+            }
+
+            std::cout << "You are going to delete this person." << std::endl;
+            (this->entries.begin()  + indicePersonInt )->printPerson();
+            std::cout << "Do you want to continue? y/n" << std::endl;
+            std::string response;
+            std::cin >> response;
+            if (response.compare("y") == 0){
+                this->entries.erase((this->entries.begin() + indicePersonInt));
+                std::cout << "Contact deleted" << std::endl;
+            } else {
+                std::cout << "Abandon" << std::endl;
+                //TODO libération de ???
+            }
+        }
+    }
 }
 
 void AddressBook::editContact(Person p){
