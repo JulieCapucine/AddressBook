@@ -4,17 +4,22 @@
 #include "Date.h"
 #include "Address.h"
 #include "AddressBook.h"
+#include "Menu.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+
+    Menu menu;
     AddressBook addresses;
+    menu.printMenu(addresses);
+   /* cout << "Hello world!" << endl;
+   
     addresses.addContact();
-    addresses.addContact();
+    addresses.addContact();*/
     //addresses.addContact();
-    addresses.printAll();
+    // addresses.printAll();
 
     /*map<unsigned int, Person> result = addresses.searchByName();
     std::map<unsigned int, Person>::iterator it;
@@ -22,8 +27,8 @@ int main()
         std::cout << "Position AddressBook : " << it->first << endl;
         (it->second).printPerson();
     }*/
-    addresses.editContact();
-    addresses.removeContact();
-    addresses.printAll();
+    // addresses.editContact();
+    // addresses.removeContact();
+    // addresses.printAll();
     return 0;
 }

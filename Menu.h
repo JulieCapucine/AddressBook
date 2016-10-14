@@ -9,7 +9,7 @@
 class Menu {
 
 public:
-	Menu(AddressBook addressbook) {};
+	Menu() {};
 	void printMenu(AddressBook addressbook);
 
 };

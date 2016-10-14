@@ -1,6 +1,6 @@
-#include "AddressBook.h"
+#include "Menu.h"
 
-void printMenu(AddressBook addressbook){
+void Menu::printMenu(AddressBook addressbook){
 	std::cout << "What do you want to do with your address book?" << std::endl;
 	std::cout << "0 - Display address book" << std::endl;
 	std::cout << "1 - Add a contact" << std::endl;
@@ -24,7 +24,10 @@ void printMenu(AddressBook addressbook){
 			addressbook.search();
 			break;
 		case 4:
-			addressbook.editContact(Person p);
+			addressbook.editContact();
+			break;
+		case 5:
+			exit(0);
 			break;
 		default:
 			std::cout << "Oups! No fonction under that number" << std::endl;
