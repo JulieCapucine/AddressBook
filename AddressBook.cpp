@@ -1,8 +1,14 @@
 #include "AddressBook.h"
+#include "Date.h"
 
 void AddressBook::printAll(){
-   for (unsigned int i = 0; i < this->entries.size(); i++)
-      this->entries[i].printPerson();
+    if (this->isEmpty()){
+        std::cout << "Your address book is empty" << std::endl;
+    } else {
+        for (unsigned int i = 0; i < this->entries.size(); i++)
+        this->entries[i].printPerson();
+    }
+
 }
 
 std::map<unsigned int, Person> AddressBook::searchByNickName(){
@@ -157,22 +163,59 @@ void AddressBook::editContact(){
                 std::cout << "What do you want to edit ?" << std::endl;
                 std::cout << "1. Firstname \t2. Lastname \t3. Nickname \t4. Phone number \t5. Address \t6. Birthdate" << std::endl;
                 std::cin >> choice;
+                std::string response, city, country, streetName;
+                Date birthdate;
+                Address address;
                 switch (choice) {
-                case 1 :
-                    //this->entries[indicePersonInt].setFirstName("tupu");
-                    break;
-                case 2 :
-                    break;
-                case 3 :
-                    break;
-                case 4 :
-                    break;
-                case 5 :
-                    break;
-                case 6 :
-                    break;
-                default :
-                    break;
+                    case 1 :
+                        std::cout << "Enter new first name" << std::endl;
+                        std::cin >> response;
+                        this->entries[indicePersonInt].setFirstName(response);
+                        break;
+                    case 2 :
+                        std::cout << "Enter new last name" << std::endl;
+                        std::cin >> response;
+                        this->entries[indicePersonInt].setLastName(response);
+                        break;
+                    case 3 :
+                        std::cout << "Enter new nickname" << std::endl;
+                        std::cin >> response;
+                        this->entries[indicePersonInt].setNickName(response);
+                        break;
+                    case 4 :
+                        std::cout << "Enter new phone number" << std::endl;
+                        std::cin >> response;
+                        this->entries[indicePersonInt].setPhoneNumber(response);
+                        break;
+                    case 5 :
+                        std::cout << "New address : " << std::endl;
+                        int streetNumber;
+                        std::cout << "Enter city" << std::endl;
+                        std::cin >> city;
+                        std::cout << "Enter country" << std::endl;
+                        std::cin >> country;
+                        std::cout << "Enter streetNumber" << std::endl;
+                        std::cin >> streetNumber;
+                        std::cout << "Enter streetName" << std::endl;
+                        std::cin >> streetName;
+                        address = Address(city, country, streetNumber, streetName);
+                        this->entries[indicePersonInt].setAddress(address);
+                        break;
+                    case 6 :
+                        std::cout << "New birthdate: " << std::endl;
+                        int year, month, day;
+                        std::cout << "Enter year" << std::endl;
+                        std::cin >> year;
+                        std::cout << "enter month" << std::endl;
+                        std::cin >> month;
+                        std::cout << "Enter day" << std::endl;
+                        std::cin >> day;
+                        birthdate = Date(year, month, day);
+                        this->entries[indicePersonInt].setBirthDate(birthdate);
+                        break;
+                    default:
+                        std::cout << "Oups! No function under that number" << std::endl;
+                        break;
                 }
 
             } else {

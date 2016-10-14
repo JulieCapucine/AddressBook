@@ -7,36 +7,42 @@ void Menu::printMenu(AddressBook addressbook){
 	std::cout << "2 - Remove a contact" << std::endl;
 	std::cout << "3 - Look for a specific contact" << std::endl;
 	std::cout << "4 - Edit a contact" << std::endl;
-	std::cout << "5 - Quit" << std::endl;
+	std::cout << "5 - Export Address book to file" << std::endl;
+	std::cout << "6 - Quit" << std::endl;
 	int input;
 	std::cin >> input;
 	switch (input){
 		case 0 :
 			addressbook.printAll();
-			std::cout << "####################" << std::endl;
+			std::cout << "\t #################### \t" << std::endl;
 			this->printMenu(addressbook);
 			break;
 		case 1:
 			addressbook.addContact();
-			std::cout << "####################" << std::endl;
+			std::cout << "\t #################### \t" << std::endl;
 			this->printMenu(addressbook);
 			break;
 		case 2:
 			addressbook.removeContact();
-			std::cout << "####################" << std::endl;
+			std::cout << "\t #################### \t" << std::endl;
 			this->printMenu(addressbook);
 			break;
 		case 3:
 			addressbook.search();
-			std::cout << "####################" << std::endl;
+			std::cout << "\t #################### \t" << std::endl;
 			this->printMenu(addressbook);
 			break;
 		case 4:
 			addressbook.editContact();
-			std::cout << "####################" << std::endl;
+			std::cout << "\t #################### \t" << std::endl;
 			this->printMenu(addressbook);
 			break;
 		case 5:
+			addressbook.exportToFile();
+			std::cout << "\t #################### \t" << std::endl;
+			this->printMenu(addressbook);
+			break;
+		case 6:
 			exit(0);
 			break;
 		default:

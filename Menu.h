@@ -11,7 +11,6 @@ class Menu {
 public:
 	Menu() {};
 	void printMenu(AddressBook addressbook);
-
 };
 
 #endif
