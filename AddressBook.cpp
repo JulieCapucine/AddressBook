@@ -85,7 +85,7 @@ void AddressBook::removeContact(){
             if (result.size() == 1){
                  std::cout << "You are going to delete this person." << std::endl;
                  
-                for (it=result.begin(); it!=result.end(); ++it) {
+                for (it=result.begin(); it!=result.end(); ++it) {// std::cout << "Last name
                     std::cout << "Person n° : " << it->first << std::endl;
                     (it->second).printPerson();
                 }
