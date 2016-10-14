@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1476350642 source:c:\users\vanessa\desktop\c++\projet\td3\address.cpp
+	"Address.h"
+
+1476350642 c:\users\vanessa\desktop\c++\projet\td3\address.h
+	<iostream>
+	<cstdlib>
+	<string>
+
+1476435854 source:c:\users\vanessa\desktop\c++\projet\td3\addressbook.cpp
+	"AddressBook.h"
+
+1476437486 c:\users\vanessa\desktop\c++\projet\td3\addressbook.h
+	<iostream>
+	<cstdlib>
+	<string>
+	<vector>
+	<map>
+	"Person.h"
+	"Address.h"
+	"Person.h"
+
+1476434669 c:\users\vanessa\desktop\c++\projet\td3\person.h
+	<iostream>
+	<cstdlib>
+	<string>
+	"Address.h"
+	"Date.h"
+
+1476350642 c:\users\vanessa\desktop\c++\projet\td3\date.h
+	<iostream>
+	<cstdlib>
+	<string>
+	<vector>
+
+1476350642 source:c:\users\vanessa\desktop\c++\projet\td3\date.cpp
+	"Date.h"
+
+1476437428 source:c:\users\vanessa\desktop\c++\projet\td3\main.cpp
+	<iostream>
+	<map>
+	"Person.h"
+	"Date.h"
+	"Address.h"
+	"AddressBook.h"
+
+1476434995 source:c:\users\vanessa\desktop\c++\projet\td3\person.cpp
+	"Person.h"
+

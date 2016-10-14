@@ -38,8 +38,16 @@ void Person::printPerson() {
 	this->address.printAddress();
 }
 
-unsigned int Person::isNamed(std::string keyword) {
-    if (this->firstName == keyword)
+unsigned int Person::isNickNamed(std::string nickName) {
+    if (nickName == "") // Nickname pas défini
+        return 0;
+    if (this->nickName == nickName)
+        return 1;
+    return 0;
+}
+
+unsigned int Person::isNamed(std::string firstName, std::string lastName) {
+    if (this->firstName == firstName && this->lastName == lastName)
         return 1;
     return 0;
 }

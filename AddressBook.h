@@ -16,10 +16,12 @@ class AddressBook {
 public:
     int isEmpty();
 	void printAll();
-	std::map<unsigned int, Person> search(std::string keyword);
+	std::map<unsigned int, Person> searchByNickName();
+	std::map<unsigned int, Person> searchByName();
+	std::map<unsigned int, Person> search();
 	void addContact();
 	void removeContact();
-	void editContact(Person p);
+	void editContact();
 	void exportToFile();
 };
 
