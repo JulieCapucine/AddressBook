@@ -65,3 +65,68 @@ std::string Person::toString() {
         result += this->phoneNumber;
     return result;
 }
+
+
+unsigned int Person::editFirstName(){
+    std::string response;
+    std::cout << "Enter new first name" << std::endl;
+    std::cin >> response;
+    this->setFirstName(response);
+    return 1;
+}
+
+unsigned int Person::editLastName(){
+    std::string response;
+    std::cout << "Enter new last name" << std::endl;
+    std::cin >> response;
+    this->setLastName(response);
+    return 1;
+}
+
+unsigned int Person::editNickName(){
+    std::string response;
+    std::cout << "Enter new nickname" << std::endl;
+    std::cin >> response;
+    this->setNickName(response);
+    return 1;
+}
+
+unsigned int Person::editPhoneNumber(){
+    std::string response;
+    std::cout << "Enter new phone number" << std::endl;
+    std::cin >> response;
+    this->setPhoneNumber(response);
+    return 1;
+}
+
+unsigned int Person::editAddress(){
+    std::string city, country, streetName, streetNumber;
+    std::cout << "New address : " << std::endl;
+    std::cout << "Enter city" << std::endl;
+    std::cin >> city;
+    std::cout << "Enter country" << std::endl;
+    std::cin >> country;
+    std::cout << "Enter streetNumber" << std::endl;
+    std::cin >> streetNumber;
+    std::cout << "Enter streetName" << std::endl;
+    std::cin >> streetName;
+    Address address;
+    address = Address(city, country, streetNumber, streetName);
+    this->setAddress(address);
+    return 1;
+}
+
+unsigned int Person::editBirthDate(){
+    Date birthdate;
+    std::cout << "New birthdate: " << std::endl;
+    int year, month, day;
+    std::cout << "Enter year" << std::endl;
+    std::cin >> year;
+    std::cout << "enter month" << std::endl;
+    std::cin >> month;
+    std::cout << "Enter day" << std::endl;
+    std::cin >> day;
+    birthdate = Date(year, month, day);
+    this->setBirthDate(birthdate);
+    return 1;
+}

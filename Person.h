@@ -40,6 +40,12 @@ public:
 	std::string toString();
 	unsigned int isNickNamed(std::string nickName);
 	unsigned int isNamed(std::string firstName, std::string lastName);
+	unsigned int editFirstName();
+	unsigned int editLastName();
+	unsigned int editNickName();
+	unsigned int editPhoneNumber();
+	unsigned int editBirthDate();
+	unsigned int editAddress();
 };
 
 #endif
