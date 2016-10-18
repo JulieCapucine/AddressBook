@@ -111,16 +111,9 @@ unsigned int Person::editAddress(){
 }
 
 unsigned int Person::editBirthDate(){
-    Date birthdate;
-    std::cout << "New birthdate: " << std::endl;
-    int year, month, day;
-    std::cout << "Enter year" << std::endl;
-    std::cin >> year;
-    std::cout << "enter month" << std::endl;
-    std::cin >> month;
-    std::cout << "Enter day" << std::endl;
-    std::cin >> day;
-    birthdate = Date(year, month, day);
-    this->setBirthDate(birthdate);
+    std::string birthDate;
+    std::cout << "New birthdate ? (dd/mm/yy) " << std::endl;
+    std::cin >> birthDate;
+    this->setBirthDate(birthDate);
     return 1;
 }

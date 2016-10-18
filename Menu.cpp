@@ -39,7 +39,7 @@ void Menu::printMenu(AddressBook addressbook){
 			this->printMenu(addressbook);
 			break;
 		case '5':
-			addressbook.exportToFile();
+			addressbook.saveAddressBook();
 			std::cout << "\n #################### \n" << std::endl;
 			this->printMenu(addressbook);
 			break;

@@ -1,5 +1,4 @@
 #include "AddressBook.h"
-#include "Date.h"
 
 void AddressBook::printAll(){
     if (this->isEmpty()){
@@ -215,8 +214,9 @@ AddressBook AddressBook::loadAddressBook() {
     std::cout << "You are going to load your address book.\nDo you want to continue ? (y/n)" << std::endl;
     std::cin >> response;
     if (response == 'y') {
-        getLine();
+
     }
+    return ab;
 }
 
 int AddressBook::isEmpty() {
