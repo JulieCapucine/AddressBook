@@ -36,8 +36,6 @@
 		<Unit filename="Address.h" />
 		<Unit filename="AddressBook.cpp" />
 		<Unit filename="AddressBook.h" />
-		<Unit filename="Date.cpp" />
-		<Unit filename="Date.h" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
 		<Unit filename="Person.cpp" />

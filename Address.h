@@ -5,29 +5,34 @@
 #include <cstdlib>
 #include <string>
 
+using namespace std;
+
 class Address {
-	std::string city;
-	std::string country;
-	std::string streetNumber;
-	std::string streetName;
+	string streetNumber;
+	string streetName;
+    string city;
+	string country;
 
 public:
 	Address();
-	Address(std::string city, std::string country, std::string streetNumber, std::string streetName);
+	Address(string streetNumber, string streetName, string city, string country);
 	~Address();
 
-	std::string getCity();
-	std::string getCountry();
-	std::string getStreetNumber();
-	std::string getStreetName();
+	string getCity();
+	string getCountry();
+	string getStreetNumber();
+	string getStreetName();
 
-	void setCity(std::string city);
-	void setCountry(std::string country);
-	void setStreetNumber(std::string streetNumber);
-	void setStreetName(std::string streetName);
+	void setCity(string city);
+	void setCountry(string country);
+	void setStreetNumber(string streetNumber);
+	void setStreetName(string streetName);
 
+	// Print an address in the console
 	void printAddress();
-	std::string formate();
+	/* Formate a address like this :
+	streetNumber:streetName:city:country */
+	string formate();
 };
 
 #endif

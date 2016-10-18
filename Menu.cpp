@@ -1,56 +1,59 @@
 #include "Menu.h"
 
-void Menu::printMenu(AddressBook addressbook){
-	std::cout << "\n \nWhat do you want to do with your address book? \n" << std::endl;
-	std::cout << "0 - Display address book" << std::endl;
-	std::cout << "1 - Add a contact" << std::endl;
-	std::cout << "2 - Remove a contact" << std::endl;
-	std::cout << "3 - Look for a specific contact" << std::endl;
-	std::cout << "4 - Edit a contact" << std::endl;
-	std::cout << "5 - Export Address book to file" << std::endl;
-	std::cout << "q - Quit \n" << std::endl;
+void Menu::printMenu() {
+    cout << "What do you want to do with your Address Book?\n" << endl;
+	cout << "- VIEW MY CONTACTS -" << endl;
+	cout << "\t0 - Display Address Book \t1 - Look for a specific Contact\n" << endl;
+
+	cout << "- MANAGE MY CONTACTS -" << endl;
+	cout << "\t2 - Add a Contact \t3 - Edit a Contact" << endl;
+	cout << "\t4 - Remove a Contact\n" << endl;
+
+	cout << "- SAVE AND LOAD -" << endl;
+	cout << "\t5 - Save Address book \t6 - Load Address book\n" << endl;
+
+	cout << "q - Quit\n" << endl;
+}
+
+void Menu::loop(AddressBook addressBook) {
+    this->printMenu();
+
 	char input;
-	std::cin >> input;
-	std::cout << "\n" << std::endl;
+	unsigned int result;
+
+	cout << "Choice : ";
+	cin >> input;
+
+	cout << "\n--------------" << endl;
 	switch (input){
 		case '0' :
-			addressbook.printAll();
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+			addressBook.printAll();
 			break;
-		case '1':
-			addressbook.addContact();
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+        case '1':
+			addressBook.search();
 			break;
 		case '2':
-			addressbook.removeContact();
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+			addressBook.addContact();
 			break;
-		case '3':
-			addressbook.search();
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+        case '3':
+			addressBook.editContact();
 			break;
 		case '4':
-			addressbook.editContact();
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+			addressBook.removeContact();
 			break;
 		case '5':
-			addressbook.saveAddressBook();
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+			addressBook.saveAddressBook();
+			break;
+        case '6':
+            addressBook = addressBook.loadAddressBook();
 			break;
 		case 'q':
+		    cout << "Goodbye !" << endl;
 			exit(0);
-			break;
 		default:
-			std::cout << "Oups! No fonction under that number" << std::endl;
-			std::cout << "\n #################### \n" << std::endl;
-			this->printMenu(addressbook);
+			cout << "Oups! No fonction under that number" << endl;
 			break;
 	}
-
+    cout << "--------------\n" << endl;
+    this->loop(addressBook);
 }

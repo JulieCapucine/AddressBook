@@ -2,14 +2,15 @@
 
 Address::Address(){}
 
-Address::Address(std::string city, std::string country, std::string, std::string streetName) {
-    this->city = city;
-    this->country = country;
+Address::Address(std::string streetNumber, std::string streetName, std::string city, std::string country) {
     this->streetNumber = streetNumber;
     this->streetName = streetName;
+    this->city = city;
+    this->country = country;
 }
-Address::~Address(){
-}
+
+Address::~Address(){}
+
 std::string Address::getCity(){ return this->city; }
 std::string Address::getCountry(){ return this->country; }
 std::string Address::getStreetNumber(){ return this->streetNumber; }

@@ -1,44 +1,45 @@
 #include "Person.h"
 
-Person::Person(std::string firstName, std::string lastName, Address address) {
+Person::Person(string firstName, string lastName, Address address) {
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->address = address;
 
-	// On met des donnees facilement identifiables pour verifier ou non si elles ont ete modifiees
+	// These datas are easy to identify, so we can see if the user enter them or not
 	this->birthDate = "00/00/00";
 	this->nickName = "";
 	this->phoneNumber = "";
 }
+
 Person::~Person() {}
 
-std::string Person::getFirstName() { return this->firstName; }
-std::string Person::getLastName() { return this->lastName; }
-std::string Person::getNickName() { return this->nickName; }
-std::string Person::getPhoneNumber() { return this->phoneNumber; }
-std::string Person::getBirthDate() { return this->birthDate; }
+string Person::getFirstName() { return this->firstName; }
+string Person::getLastName() { return this->lastName; }
+string Person::getNickName() { return this->nickName; }
+string Person::getPhoneNumber() { return this->phoneNumber; }
+string Person::getBirthDate() { return this->birthDate; }
 Address Person::getAddress() { return this->address; }
 
-void Person::setFirstName(std::string firstName) { this->firstName = firstName; }
-void Person::setLastName(std::string lastName) { this->lastName = lastName; }
-void Person::setNickName(std::string nickName) { this->nickName = nickName; }
-void Person::setPhoneNumber(std::string phoneNumber) { this->phoneNumber = phoneNumber; }
-void Person::setBirthDate(std::string birthDate) { this->birthDate = birthDate; }
+void Person::setFirstName(string firstName) { this->firstName = firstName; }
+void Person::setLastName(string lastName) { this->lastName = lastName; }
+void Person::setNickName(string nickName) { this->nickName = nickName; }
+void Person::setPhoneNumber(string phoneNumber) { this->phoneNumber = phoneNumber; }
+void Person::setBirthDate(string birthDate) { this->birthDate = birthDate; }
 void Person::setAddress(Address address) { this->address = address; }
 
 void Person::printPerson() {
-	std::cout << this->firstName;
+	cout << this->firstName;
 	if (nickName != "")
-        std::cout << " \"" << this->nickName << "\"";
-    std::cout << " " << this->lastName << std::endl;
-    if (birthDate == "00/00/00")
-        std::cout << this->birthDate << std::endl;
+        cout << " \"" << this->nickName << "\"";
+    cout << " " << this->lastName << endl;
+    if (birthDate != "00/00/00")
+        cout << this->birthDate << endl;
     if (phoneNumber != "")
-        std::cout << this->phoneNumber << std::endl;
+        cout << this->phoneNumber << endl;
 	this->address.printAddress();
 }
 
-unsigned int Person::isNickNamed(std::string nickName) {
+unsigned int Person::isNickNamed(string nickName) {
     if (nickName == "")
         return 0;
     if (this->nickName == nickName)
@@ -46,74 +47,97 @@ unsigned int Person::isNickNamed(std::string nickName) {
     return 0;
 }
 
-unsigned int Person::isNamed(std::string firstName, std::string lastName) {
+unsigned int Person::isNamed(string firstName, string lastName) {
     if (this->firstName == firstName && this->lastName == lastName)
         return 1;
     return 0;
 }
 
-std::string Person::formate() {
-    std::string result = "";
+string Person::formate() {
+    string result = "";
     result += this->firstName + ":" + this->nickName + ":" + this->lastName + "\n";
     result += this->address.formate() + "\n";
-    result += this->phoneNumber + ";";
+    result += this->phoneNumber + ":";
     result += this->birthDate;
     return result;
 }
 
 unsigned int Person::editFirstName(){
-    std::string response;
-    std::cout << "Enter new first name" << std::endl;
-    std::cin >> response;
+    string response;
+    cout << "Enter new first name : ";
+    cin >> response;
+    if (response == "")
+        return 0;
     this->setFirstName(response);
     return 1;
 }
 
 unsigned int Person::editLastName(){
-    std::string response;
-    std::cout << "Enter new last name" << std::endl;
-    std::cin >> response;
+    string response;
+    cout << "Enter new last name : ";
+    cin >> response;
+    if (response == "")
+        return 0;
     this->setLastName(response);
     return 1;
 }
 
 unsigned int Person::editNickName(){
-    std::string response;
-    std::cout << "Enter new nickname" << std::endl;
-    std::cin >> response;
+    string response;
+    cout << "Enter new nickname : ";
+    cin >> response;
+    if (response == "")
+        return 0;
     this->setNickName(response);
     return 1;
 }
 
 unsigned int Person::editPhoneNumber(){
-    std::string response;
-    std::cout << "Enter new phone number" << std::endl;
-    std::cin >> response;
+    string response;
+    cout << "Enter new phone number : ";
+    cin >> response;
+    if (response == "")
+        return 0;
     this->setPhoneNumber(response);
     return 1;
 }
 
 unsigned int Person::editAddress(){
-    std::string city, country, streetName, streetNumber;
-    std::cout << "New address : " << std::endl;
-    std::cout << "Enter city" << std::endl;
-    std::cin >> city;
-    std::cout << "Enter country" << std::endl;
-    std::cin >> country;
-    std::cout << "Enter streetNumber" << std::endl;
-    std::cin >> streetNumber;
-    std::cout << "Enter streetName" << std::endl;
-    std::cin >> streetName;
-    Address address;
-    address = Address(city, country, streetNumber, streetName);
+    string city, country, streetName, streetNumber;
+    cout << "New address : " << endl;
+
+    cout << "Enter city : ";
+    cin >> city;
+    if (city == "")
+        return 0;
+
+    cout << "Enter country : ";
+    cin >> country;
+    if (country == "")
+        return 0;
+
+    cout << "Enter street number : ";
+    cin >> streetNumber;
+    if (streetNumber == "")
+        return 0;
+
+    cout << "Enter street name : ";
+    cin >> streetName;
+    if (streetName == "")
+        return 0;
+
+    Address address = Address(streetNumber, streetName, city, country);
     this->setAddress(address);
     return 1;
 }
 
 unsigned int Person::editBirthDate(){
-    std::string birthDate;
-    std::cout << "New birthdate ? (dd/mm/yy) " << std::endl;
-    std::cin >> birthDate;
+    //TODO : Verification on the date validity
+    string birthDate;
+    cout << "New birthdate ? (dd/mm/yy) " << endl;
+    cin >> birthDate;
+    if (birthDate == "")
+        return 0;
     this->setBirthDate(birthDate);
     return 1;
 }

@@ -2,83 +2,86 @@
 
 void AddressBook::printAll(){
     if (this->isEmpty()){
-        std::cout << "Your address book is empty" << std::endl;
+        cout << "Your address book is empty." << endl;
     } else {
-        for (unsigned int i = 0; i < this->entries.size(); i++)
-        this->entries[i].printPerson();
+        for (unsigned int i = 0; i < this->entries.size(); i++) {
+            this->entries[i].printPerson();
+            cout << "\n" << endl;
+        }
     }
-
 }
 
-std::map<unsigned int, Person> AddressBook::searchByNickName(){
-    std::string nickName;
-    std::cout << "Nickname : ";
-    std::cin >> nickName;
+map<unsigned int, Person> AddressBook::searchByNickName(){
+    string nickName;
+    cout << "Nickname ? ";
+    cin >> nickName;
 
-    std::map<unsigned int, Person> result;
+    map<unsigned int, Person> result;
     for (unsigned int i = 0; i < this->entries.size(); i++) {
       if (this->entries[i].isNickNamed(nickName))
-        result.insert(std::pair<unsigned int, Person>(i, this->entries[i]));
+        result.insert(pair<unsigned int, Person>(i, this->entries[i]));
     }
+
     return result;
 }
 
-std::map<unsigned int, Person> AddressBook::searchByName(){
-    std::string firstName, lastName;
-    std::cout << "First name : ";
-    std::cin >> firstName;
-    std::cout << "Last name : ";
-    std::cin >> lastName;
+map<unsigned int, Person> AddressBook::searchByName(){
+    string firstName, lastName;
+    cout << "First name ? ";
+    cin >> firstName;
+    cout << "Last name ? ";
+    cin >> lastName;
 
-    std::map<unsigned int, Person> result;
+    map<unsigned int, Person> result;
     for (unsigned int i = 0; i < this->entries.size(); i++) {
       if (this->entries[i].isNamed(firstName, lastName))
-        result.insert(std::pair<unsigned int, Person>(i, this->entries[i]));
+        result.insert(pair<unsigned int, Person>(i, this->entries[i]));
     }
+
     return result;
 }
 
-std::map<unsigned int, Person> AddressBook::search() {
-    std::cout << "Do you want to find a person by his name or his nickname ?" << std::endl;
-    std::cout << "1. By name \t 2. By nickname" << std::endl;
-    unsigned int choice;
-    std::cin >> choice;
+map<unsigned int, Person> AddressBook::search() {
+    cout << "Do you want to find a Contact by his name or his nickname ?" << endl;
+    cout << "1. By his name \t 2. By his nickname" << endl;
 
-    std::map<unsigned int, Person> result;
-    if (choice == 1) {
-        std::cout << "Type informations of the contact you want to find" << std::endl;
+    char choice;
+    cout << "Choice : ";
+    cin >> choice;
+    cout << endl; // Just to pass one line
+
+    map<unsigned int, Person> result;
+    if (choice == '1') {
         result = searchByName();
-    } else if (choice == 2) {
-        std::cout << "Type informations of the contact you want to find" << std::endl;
-        result = searchByName();
+    } else if (choice == '2') {
+        result = searchByNickName();
     } else {
-        std::cout << "You have to type 1 or 2.";
+        cout << "You have to type 1 or 2.";
     }
+
     return result;
 }
 
 void AddressBook::addContact(){
     // Possible amelioration : cin don't like space, so we may have to use an other method to get user entries...
 
-    // Creation contact
-    std::string firstName, lastName;
-    std::cout << "First name ? ";
-    std::cin >> firstName;
-    std::cout << "Last name ? ";
-    std::cin >> lastName;
+    string firstName, lastName;
+    cout << "First name ? ";
+    cin >> firstName;
+    cout << "Last name ? ";
+    cin >> lastName;
 
-    // Creation adresse du contact
-    std::string city, country, streetName, streetNumber;
-    std::cout << "Country ? ";
-    std::cin >> country;
-    std::cout << "City ? ";
-    std::cin >> city;
-    std::cout << "Street number ?";
-    std::cin >> streetNumber;
-    std::cout << "Street name ?";
-    std::cin >> streetName;
+    string city, country, streetName, streetNumber;
+    cout << "Country ? ";
+    cin >> country;
+    cout << "City ? ";
+    cin >> city;
+    cout << "Street number ? ";
+    cin >> streetNumber;
+    cout << "Street name ? ";
+    cin >> streetName;
 
-    Address a = Address(city, country, streetNumber, streetName);
+    Address a = Address(streetNumber, streetName, city, country);
     Person p = Person(firstName, lastName, a);
 
     this->entries.push_back(p);
@@ -86,135 +89,176 @@ void AddressBook::addContact(){
 
 void AddressBook::removeContact(){
     if (this->isEmpty()){
-        std::cout << "There is no contact in your address book." << std::endl;
+        cout << "There is no Contact in your address book." << endl;
     } else {
-        std::cout << "Let's find the contact you want to delete" << std::endl;
-        std::map<unsigned int, Person> result = this->search();
+        // First, we have to choose the contact you want to delete
+        cout << "Let's find the Contact you want to delete." << endl;
+        map<unsigned int, Person> result = this->search();
 
         if (result.size() == 0) {
-            std::cout << "There is no one with that name or nickname in your address book." << std::endl;
+            cout << "There is no one with that name or that nickname in your Address Book." << endl;
         } else {
-            std::map<unsigned int, Person>::iterator it = result.begin();
-            std::string indicePerson;
+            map<unsigned int, Person>::iterator it = result.begin();
+            string indicePerson;
             int indicePersonInt = it->first;
+            /* If the search return more than one result, the user have to choose between many contacts.
+            We display all the possible contact so he can choose the one he wants to delete */
             if (result.size() != 1) {
-                std::cout << "There are several persons with that name in your address book. " << std::endl;
+                cout << "\nThere are several Contacts with that name or that nickname in your address book." << endl;
+                // Iteration on a map
                 for (it=result.begin(); it!=result.end(); ++it) {
-                    std::cout << "Person n° : " << std::endl;
-                    std::cout << it->first << std::endl;
+                    cout << "Person " << it->first << endl;
                     (it->second).printPerson();
+                    cout << endl;
                 }
-                std::cout << "Please enter the number of the person you want to delete" << std::endl;
-
-                std::cin >> indicePerson;
+                cout << "Please enter the number of the person you want to delete or c if you want to cancel." << endl;
+                cout << "Entry : ";
+                cin >> indicePerson;
+                if (indicePerson == "c")
+                    return;
                 indicePersonInt = atoi(indicePerson.c_str());
             }
 
-            std::cout << "You are going to delete this person." << std::endl;
+            cout << "\nYou are going to delete this person." << endl;
             (this->entries.begin() + indicePersonInt)->printPerson();
-            std::cout << "Do you want to continue? y/n" << std::endl;
-            std::string response;
-            std::cin >> response;
+
+            cout << "\nDo you want to continue? y/n" << endl;
+            string response;
+            cin >> response;
             if (response.compare("y") == 0){
                 this->entries.erase((this->entries.begin() + indicePersonInt));
-                std::cout << "Contact deleted" << std::endl;
+                cout << "\nContact deleted." << endl;
             } else {
-                std::cout << "Abandon" << std::endl;
+                cout << "\nAbandon." << endl;
             }
         }
     }
 }
 
 void AddressBook::editContact(){
-    std::cout << "Let's find the person you want to modify";
-    std::map<unsigned int, Person> result = this->search();
+    cout << "Let's find the person you want to modify." << endl;
+    map<unsigned int, Person> result = this->search();
 
-    std::map<unsigned int, Person>::iterator it = result.begin();
-    std::string indicePerson;
-    int indicePersonInt = it->first;
-    if (result.size() == 0) //Peut etre mettre ça dans la fonction search plutot, c'est plus logique...
-        std::cout << "There is no one with that name or nickname in your address book." << std::endl;
-    else {
-           if (result.size() != 1) {
-                std::cout << "There are several persons with that name in your address book. " << std::endl;
+    map<unsigned int, Person>::iterator it = result.begin();
+    if (result.size() == 0) {
+            cout << "There is no one with that name or that nickname in your Address Book." << endl;
+        } else {
+            map<unsigned int, Person>::iterator it = result.begin();
+            string indicePerson;
+            int indicePersonInt = it->first;
+            if (result.size() != 1) {
+                cout << "\nThere are several Contacts with that name or that nickname in your address book." << endl;
                 for (it=result.begin(); it!=result.end(); ++it) {
-                    std::cout << "Person n° : " << std::endl;
-                    std::cout << it->first << std::endl;
+                    cout << "Person " << it->first << endl;
                     (it->second).printPerson();
+                    cout << endl;
                 }
-                std::cout << "Please enter the number of the person you want to delete" << std::endl;
-
-                std::cin >> indicePerson;
+                cout << "Please enter the number of the person you want to edit or c if you want to cancel." << endl;
+                cout << "Entry : ";
+                cin >> indicePerson;
+                if (indicePerson == "c")
+                    return;
                 indicePersonInt = atoi(indicePerson.c_str());
             }
-            std::cout << "You are going to edit this person." << std::endl;
+            cout << "\nYou are going to edit this person." << endl;
             (this->entries.begin()  + indicePersonInt )->printPerson();
-            std::cout << "Do you want to continue? y/n" << std::endl;
 
-            std::string response;
-            std::cin >> response;
+            cout << "\nDo you want to continue? y/n" << endl;
+            string response;
+            cin >> response;
             if (response.compare("y") == 0){
                 char choice;
                 while (choice != 'q') {
-                    std::cout << "What do you want to edit ? To quit, type q" << std::endl;
-                    std::cout << "1. Firstname \t2. Lastname \t3. Nickname \t4. Phone number \t5. Address \t6. Birthdate" << std::endl;
-                    std::cin >> choice;
-                    Person personToEdit = this->entries[indicePersonInt];
+                    cout << "\nWhat do you want to edit ? To quit, type q" << endl;
+                    cout << "1. Firstname \t2. Lastname \t3. Nickname \n4. Phone number \t5. Address \t6. Birthdate" << endl;
+                    cin >> choice;
                     int success;
                     switch (choice) {
                         case '1' :
-                            success = personToEdit.editFirstName();
+                            success = this->entries[indicePersonInt].editFirstName();
                             break;
                         case '2' :
-                            success = personToEdit.editLastName();
+                            success = this->entries[indicePersonInt].editLastName();
                             break;
                         case '3' :
-                            success = personToEdit.editNickName();
+                            success = this->entries[indicePersonInt].editNickName();
                             break;
                         case '4' :
-                            success = personToEdit.editPhoneNumber();
+                            success = this->entries[indicePersonInt].editPhoneNumber();
+                            break;
                         case '5' :
-                            success = personToEdit.editAddress();
+                            success = this->entries[indicePersonInt].editAddress();
                             break;
                         case '6' :
-                            success = personToEdit.editBirthDate();
+                            success = this->entries[indicePersonInt].editBirthDate();
                             break;
                         case 'q':
-                            std::cout << "Edition closed" << std::endl;
+                            cout << "Edition closed." << endl;
                             break;
                         default:
-                            std::cout << "Oups! No function under that number" << std::endl;
+                            cout << "Oups! No function under that number" << endl;
                             break;
                     }
+                    if (!success)
+                        cout << "Sorry but the edit failed. Maybe you have enter a empty line or a bad format date (dd/mm/yy)." << endl;
                 }
             } else {
-                std::cout << "Abandon" << std::endl;
+                cout << "Abandon." << endl;
             }
     }
 }
 
-////prenom:nickname:nom
-          //streetnum:streetname:city:country
-          //telephone;day:month:year
 void AddressBook::saveAddressBook(){
-    std::cout << "Saving address book." << std::endl;
-    std::ofstream file;
-    file.open("AddressBook.txt");
-    for (unsigned int i = 0; i < this->entries.size(); i++) {
-          file << this->entries[i].formate();
-          file << "\n";
+    cout << "Saving address book." << endl;
+    if (this->isEmpty())
+       cout << "Error : Your address book is empty." << endl;
+    else {
+        ofstream file;
+        file.open("AddressBook.txt");
+        for (unsigned int i = 0; i < this->entries.size(); i++) {
+              file << this->entries[i].formate();
+              file << "\n";
+        }
+        file.close();
+        cout << "Address book saved." << endl;
     }
-    file.close();
-    std::cout << "Address book saved." << std::endl;
 }
 
 AddressBook AddressBook::loadAddressBook() {
     AddressBook ab;
     char response;
-    std::cout << "You are going to load your address book.\nDo you want to continue ? (y/n)" << std::endl;
-    std::cin >> response;
+    cout << "You are going to load your address book. This will erase your current AddressBook.\nDo you want to continue ? (y/n)" << endl;
+    cin >> response;
     if (response == 'y') {
+        ifstream file ("AddressBook.txt");
+        if (file) {
+            string firstName, nickName, lastName, streetNumber, streetName, city, country, phoneNumber, birthDate;
+            string buffTest;
 
+            string line;
+
+            while (getline(file, firstName, ':')) {
+                getline(file, nickName, ':');
+                getline(file, lastName);
+                getline(file, streetNumber, ':');
+                getline(file, streetName, ':');
+                getline(file, city, ':');
+                getline(file, country);
+                getline(file, phoneNumber, ':');
+                getline(file, birthDate);
+
+                Address address = Address(streetNumber, streetName, city, country);
+                Person p = Person(firstName, lastName, address);
+                if (nickName != "")
+                    p.setNickName(nickName);
+                if (phoneNumber != "")
+                    p.setPhoneNumber(phoneNumber);
+                if (birthDate != "00/00/00")
+                    p.setBirthDate(birthDate);
+
+                ab.entries.push_back(p);
+            }
+        }
     }
     return ab;
 }

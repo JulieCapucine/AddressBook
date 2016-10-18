@@ -6,11 +6,15 @@
 #include <string>
 #include "AddressBook.h"
 
-class Menu {
+using namespace std;
 
+class Menu {
 public:
 	Menu() {}
-	void printMenu(AddressBook addressbook);
+	// Print the menu
+	void printMenu();
+	// Loop that manage the user choice and print the menu at each step
+	void loop(AddressBook addressbook);
 };
 
 #endif
