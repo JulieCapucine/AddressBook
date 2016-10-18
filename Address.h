@@ -27,6 +27,7 @@ public:
 	void setStreetName(std::string streetName);
 
 	void printAddress();
+	std::string toString();
 };
 
 #endif

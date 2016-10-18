@@ -24,3 +24,10 @@ void Address::printAddress() {
 	std::cout << this->streetNumber << " " << this->streetName << std::endl;
 	std::cout << this->city << ", " << this->country << std::endl;
 }
+
+std::string Address::toString() {
+    std::string result = "";
+    result += this->streetNumber + " " + this->streetName + "\n";
+	result += this->city + ", " + this->country;
+	return result;
+}

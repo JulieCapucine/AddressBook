@@ -51,3 +51,17 @@ unsigned int Person::isNamed(std::string firstName, std::string lastName) {
         return 1;
     return 0;
 }
+
+std::string Person::toString() {
+    std::string result = "";
+    result += this->firstName + " ";
+    if (this->nickName != "")
+       result += "\"" + this->nickName + "\" ";
+    result += this->lastName + "\n";
+    result += this->address.toString()  + "\n";
+    if (birthDate.getYear() != 0)
+        result += this->birthDate.toString();
+    if (phoneNumber != "")
+        result += this->phoneNumber;
+    return result;
+}

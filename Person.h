@@ -37,6 +37,7 @@ public:
 	void setAddress(Address address);
 
 	void printPerson();
+	std::string toString();
 	unsigned int isNickNamed(std::string nickName);
 	unsigned int isNamed(std::string firstName, std::string lastName);
 };

@@ -26,6 +26,7 @@ public :
 	void setDay(unsigned int day);
 
 	void printDate();
+	std::string toString();
 };
 
 #endif

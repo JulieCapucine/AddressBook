@@ -31,3 +31,13 @@ void Date::printDate() {
 	// Day / Month / Year
 	std::cout << this->day << "/" << this->month << "/" << this->year << std::endl;
 }
+
+std::string Date::toString() {
+    std::string result = "";
+    result += this->day;
+    result += "/";
+    result += this->month;
+    result += "/";
+    result += this->year;
+    return result;
+}

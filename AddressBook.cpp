@@ -59,8 +59,7 @@ std::map<unsigned int, Person> AddressBook::search() {
 }
 
 void AddressBook::addContact(){
-    // Ca fonctionne mais attention, cin aime pas les phrases avec espace
-    // Il considere que c'est une validation du mot precedent, voir comment ameliorer ca
+    // Possible amelioration : cin don't like space, so we may have to use an other method to get user entries...
 
     // Creation contact
     std::string firstName, lastName;
@@ -70,7 +69,7 @@ void AddressBook::addContact(){
     std::cin >> lastName;
 
     // Creation adresse du contact
-    /*std::string city, country, streetName;
+    std::string city, country, streetName;
     unsigned int streetNumber;
     std::cout << "Country ? ";
     std::cin >> country;
@@ -81,9 +80,7 @@ void AddressBook::addContact(){
     std::cout << "Street name ?";
     std::cin >> streetName;
 
-    Address a = Address(city, country, streetNumber, streetName);*/
-    // Ce qui est avant fonctionne, c'est juste pour eviter de tout taper pendant les tests
-    Address a = Address("Meaux", "France", 4, "Rue des Tuilleries");
+    Address a = Address(city, country, streetNumber, streetName);
     Person p = Person(firstName, lastName, a);
 
     this->entries.push_back(p);
@@ -217,16 +214,22 @@ void AddressBook::editContact(){
                         std::cout << "Oups! No function under that number" << std::endl;
                         break;
                 }
-
             } else {
                 std::cout << "Abandon" << std::endl;
             }
     }
-
-    // Chercher la personne et recuperer l'indice dans l'adresse book
-    // Utiliser les setters de Person
 }
-void AddressBook::exportToFile(){}
+void AddressBook::exportToFile(){
+    std::cout << "Your address book will be exported in addressBook.txt." << std::endl;
+    std::ofstream file;
+    file.open("adressBook.txt");
+    for (unsigned int i = 0; i < this->entries.size(); i++) {
+          file << this->entries[i].toString();
+          file << "\n";
+    }
+    file.close();
+    std::cout << "Address Book exported." << std::endl;
+}
 
 int AddressBook::isEmpty() {
     if (this->entries.size() == 0)
