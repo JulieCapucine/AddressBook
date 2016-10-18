@@ -69,8 +69,7 @@ void AddressBook::addContact(){
     std::cin >> lastName;
 
     // Creation adresse du contact
-    std::string city, country, streetName;
-    unsigned int streetNumber;
+    std::string city, country, streetName, streetNumber;
     std::cout << "Country ? ";
     std::cin >> country;
     std::cout << "City ? ";
@@ -160,7 +159,7 @@ void AddressBook::editContact(){
                 std::cout << "What do you want to edit ?" << std::endl;
                 std::cout << "1. Firstname \t2. Lastname \t3. Nickname \t4. Phone number \t5. Address \t6. Birthdate" << std::endl;
                 std::cin >> choice;
-                std::string response, city, country, streetName;
+                std::string response, city, country, streetName, streetNumber;
                 Date birthdate;
                 Address address;
                 switch (choice) {
@@ -186,7 +185,6 @@ void AddressBook::editContact(){
                         break;
                     case 5 :
                         std::cout << "New address : " << std::endl;
-                        int streetNumber;
                         std::cout << "Enter city" << std::endl;
                         std::cin >> city;
                         std::cout << "Enter country" << std::endl;

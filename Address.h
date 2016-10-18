@@ -8,22 +8,22 @@
 class Address {
 	std::string city;
 	std::string country;
-	unsigned int streetNumber;
+	std::string streetNumber;
 	std::string streetName;
 
 public:
 	Address();
-	Address(std::string city, std::string country, unsigned int streetNumber, std::string streetName);
+	Address(std::string city, std::string country, std::string streetNumber, std::string streetName);
 	~Address();
 
 	std::string getCity();
 	std::string getCountry();
-	unsigned int getStreetNumber();
+	std::string getStreetNumber();
 	std::string getStreetName();
 
 	void setCity(std::string city);
 	void setCountry(std::string country);
-	void setStreetNumber(unsigned int streetNumber);
+	void setStreetNumber(std::string streetNumber);
 	void setStreetName(std::string streetName);
 
 	void printAddress();

@@ -2,7 +2,7 @@
 
 Address::Address(){}
 
-Address::Address(std::string city, std::string country, unsigned int streetNumber, std::string streetName) {
+Address::Address(std::string city, std::string country, std::string, std::string streetName) {
     this->city = city;
     this->country = country;
     this->streetNumber = streetNumber;
@@ -12,12 +12,12 @@ Address::~Address(){
 }
 std::string Address::getCity(){ return this->city; }
 std::string Address::getCountry(){ return this->country; }
-unsigned int Address::getStreetNumber(){ return this->streetNumber; }
+std::string Address::getStreetNumber(){ return this->streetNumber; }
 std::string Address::getStreetName(){ return this->streetName; }
 
 void Address::setCity(std::string city){ this->city = city; }
 void Address::setCountry(std::string country){ this->country = country; }
-void Address::setStreetNumber(unsigned int streetNumber){ this->streetNumber = streetNumber; }
+void Address::setStreetNumber(std::string streetNumber){ this->streetNumber = streetNumber; }
 void Address::setStreetName(std::string streetName){ this->streetName = streetName; }
 
 void Address::printAddress() {
