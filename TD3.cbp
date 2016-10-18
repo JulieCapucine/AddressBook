@@ -38,6 +38,8 @@
 		<Unit filename="AddressBook.h" />
 		<Unit filename="Date.cpp" />
 		<Unit filename="Date.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
 		<Unit filename="Person.cpp" />
 		<Unit filename="Person.h" />
 		<Unit filename="TD3.cbp" />

@@ -6,7 +6,7 @@ Person::Person(std::string firstName, std::string lastName, Address address) {
 	this->address = address;
 
 	// On met des donnees facilement identifiables pour verifier ou non si elles ont ete modifiees
-	this->birthDate = Date(0, 0, 0);
+	this->birthDate = "00/00/00";
 	this->nickName = "";
 	this->phoneNumber = "";
 }
@@ -16,14 +16,14 @@ std::string Person::getFirstName() { return this->firstName; }
 std::string Person::getLastName() { return this->lastName; }
 std::string Person::getNickName() { return this->nickName; }
 std::string Person::getPhoneNumber() { return this->phoneNumber; }
-Date Person::getBirthDate() { return this->birthDate; }
+std::string Person::getBirthDate() { return this->birthDate; }
 Address Person::getAddress() { return this->address; }
 
 void Person::setFirstName(std::string firstName) { this->firstName = firstName; }
 void Person::setLastName(std::string lastName) { this->lastName = lastName; }
 void Person::setNickName(std::string nickName) { this->nickName = nickName; }
 void Person::setPhoneNumber(std::string phoneNumber) { this->phoneNumber = phoneNumber; }
-void Person::setBirthDate(Date birthDate) { this->birthDate = birthDate; }
+void Person::setBirthDate(std::string birthDate) { this->birthDate = birthDate; }
 void Person::setAddress(Address address) { this->address = address; }
 
 void Person::printPerson() {
@@ -31,15 +31,15 @@ void Person::printPerson() {
 	if (nickName != "")
         std::cout << " \"" << this->nickName << "\"";
     std::cout << " " << this->lastName << std::endl;
-    if (birthDate.getYear() != 0)
-        this->birthDate.printDate();
+    if (birthDate == "00/00/00")
+        std::cout << this->birthDate << std::endl;
     if (phoneNumber != "")
         std::cout << this->phoneNumber << std::endl;
 	this->address.printAddress();
 }
 
 unsigned int Person::isNickNamed(std::string nickName) {
-    if (nickName == "") // Nickname pas défini
+    if (nickName == "")
         return 0;
     if (this->nickName == nickName)
         return 1;
@@ -52,20 +52,14 @@ unsigned int Person::isNamed(std::string firstName, std::string lastName) {
     return 0;
 }
 
-std::string Person::toString() {
+std::string Person::formate() {
     std::string result = "";
-    result += this->firstName + " ";
-    if (this->nickName != "")
-       result += "\"" + this->nickName + "\" ";
-    result += this->lastName + "\n";
-    result += this->address.toString()  + "\n";
-    if (birthDate.getYear() != 0)
-        result += this->birthDate.toString();
-    if (phoneNumber != "")
-        result += this->phoneNumber;
+    result += this->firstName + ":" + this->nickName + ":" + this->lastName + "\n";
+    result += this->address.formate() + "\n";
+    result += this->phoneNumber + ";";
+    result += this->birthDate;
     return result;
 }
-
 
 unsigned int Person::editFirstName(){
     std::string response;

@@ -32,7 +32,7 @@ void Date::printDate() {
 	std::cout << this->day << "/" << this->month << "/" << this->year << std::endl;
 }
 
-std::string Date::toString() {
+std::string Date::formate() {
     std::string result = "";
     result += this->day;
     result += "/";

@@ -23,7 +23,8 @@ public:
 	void addContact();
 	void removeContact();
 	void editContact();
-	void exportToFile();
+	void saveAddressBook();
+	AddressBook loadAddressBook();
 };
 
 #endif

@@ -51,7 +51,7 @@ std::map<unsigned int, Person> AddressBook::search() {
         result = searchByName();
     } else if (choice == 2) {
         std::cout << "Type informations of the contact you want to find" << std::endl;
-        result = searchByNickName();
+        result = searchByName();
     } else {
         std::cout << "You have to type 1 or 2.";
     }
@@ -159,7 +159,7 @@ void AddressBook::editContact(){
                 while (choice != 'q') {
                     std::cout << "What do you want to edit ? To quit, type q" << std::endl;
                     std::cout << "1. Firstname \t2. Lastname \t3. Nickname \t4. Phone number \t5. Address \t6. Birthdate" << std::endl;
-                    std::cin >> choice;                    
+                    std::cin >> choice;
                     Person personToEdit = this->entries[indicePersonInt];
                     int success;
                     switch (choice) {
@@ -193,16 +193,30 @@ void AddressBook::editContact(){
             }
     }
 }
-void AddressBook::exportToFile(){
-    std::cout << "Your address book will be exported in addressBook.txt." << std::endl;
+
+////prenom:nickname:nom
+          //streetnum:streetname:city:country
+          //telephone;day:month:year
+void AddressBook::saveAddressBook(){
+    std::cout << "Saving address book." << std::endl;
     std::ofstream file;
-    file.open("adressBook.txt");
+    file.open("AddressBook.txt");
     for (unsigned int i = 0; i < this->entries.size(); i++) {
-          file << this->entries[i].toString();
+          file << this->entries[i].formate();
           file << "\n";
     }
     file.close();
-    std::cout << "Address Book exported." << std::endl;
+    std::cout << "Address book saved." << std::endl;
+}
+
+AddressBook AddressBook::loadAddressBook() {
+    AddressBook ab;
+    char response;
+    std::cout << "You are going to load your address book.\nDo you want to continue ? (y/n)" << std::endl;
+    std::cin >> response;
+    if (response == 'y') {
+        getLine();
+    }
 }
 
 int AddressBook::isEmpty() {

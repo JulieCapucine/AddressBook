@@ -14,7 +14,7 @@ class Person {
 	std::string lastName;
 	std::string nickName;
 	std::string phoneNumber;
-	Date birthDate;
+	std::string birthDate;
 	Address address;
 	Person() {}
 
@@ -26,18 +26,18 @@ public:
 	std::string getLastName();
 	std::string getNickName();
 	std::string getPhoneNumber();
-	Date getBirthDate();
+	std::string getBirthDate();
 	Address getAddress();
 
 	void setFirstName(std::string firstName);
 	void setLastName(std::string lastName);
 	void setNickName(std::string nickName);
 	void setPhoneNumber(std::string phoneNumber);
-	void setBirthDate(Date birthDate);
+	void setBirthDate(std::string birthDate);
 	void setAddress(Address address);
 
 	void printPerson();
-	std::string toString();
+	std::string formate();
 	unsigned int isNickNamed(std::string nickName);
 	unsigned int isNamed(std::string firstName, std::string lastName);
 	unsigned int editFirstName();
@@ -45,7 +45,7 @@ public:
 	unsigned int editNickName();
 	unsigned int editPhoneNumber();
 	unsigned int editBirthDate();
-	unsigned int editAddress();
+unsigned int editAddress();
 };
 
 #endif

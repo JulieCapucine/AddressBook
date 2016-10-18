@@ -25,9 +25,8 @@ void Address::printAddress() {
 	std::cout << this->city << ", " << this->country << std::endl;
 }
 
-std::string Address::toString() {
+std::string Address::formate() {
     std::string result = "";
-    result += this->streetNumber + " " + this->streetName + "\n";
-	result += this->city + ", " + this->country;
+    result += this->streetNumber + ":" + this->streetName + ":" + this->city + ":" + this->country;
 	return result;
 }
